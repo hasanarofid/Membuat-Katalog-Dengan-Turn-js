@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Katalognya Dengan Trun js || Hasanarofid.com</title>
+</head>
+<style>
+    body {
+        background-color: #777;
+    }
+
+    #book {
+        text-align: center;
+        margin: 30px auto;
+    }
+
+    h2 {
+        background: rgba(255, 255, 255, .9);
+        color: #777;
+        font-family: calibri, sans-serif;
+        font-weight: normal;
+        padding: 10px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="book"></div>
+</body>
+<script src="jquery.min.js"></script>
+<script src="turn.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=any&tagmode=any&format=json&jsoncallback=?",
+
+            function (data) {
+
+                shots = data.items;
+                for (var i in shots) {
+                    var shot = shots[i];
+                    // console.log(shot.media.m); return false;
+                    $("#book").append('<div style="background:url(' + shot.media.m + ');" class="page"></div>');
+                }
+                $('#book').turn({
+                    width: 400,
+                    height: 300,
+                    autoCenter: true
+                });
+            });
+    });
+
+
+</script>
+
+</html>
